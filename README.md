@@ -20,11 +20,22 @@ animated p5.js train-themed background.
 ## Run
 
 ```bash
-pip install flask
+pip install -r requirements.txt
 python app.py
 ```
 
 Then open http://127.0.0.1:5000/.
+
+## Running as a Hermes webapp
+
+**Always `pip install -r requirements.txt` BEFORE `webapps create`**, otherwise
+the supervisor will mark the app as `Error` after several restart attempts when
+the imports fail. Then:
+
+```bash
+pip install -r requirements.txt
+webapps create caltrain --command 'python3 app.py' --cwd /workspace/webapps/projects/caltrain
+```
 
 The first request downloads and caches the GTFS feed in `cache/`; subsequent
 requests in the next 24h hit the cache.
